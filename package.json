@@ -1,6 +1,7 @@
 {
-  "name": "my-v0-project",
+  "name": "profile",
   "version": "0.1.0",
+  "homepage": "https://bharatrathod0210.github.io/profile",
   "private": true,
   "scripts": {
     "predeploy": "npm run build",
