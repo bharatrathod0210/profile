@@ -82,7 +82,7 @@ export default function About() {
                   </p>
                   <div className="flex items-center mt-1">
                     <span className="text-xs px-2 py-1 rounded-full bg-[#0d1117] text-[#8b949e] group-hover:bg-[#30363d] group-hover:text-[#c9d1d9] transition-all duration-300">
-                      2020 - 2023
+                      2021 - 2024
                     </span>
                   </div>
                 </div>

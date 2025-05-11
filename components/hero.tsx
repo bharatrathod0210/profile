@@ -1,84 +1,89 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { ArrowDown, FileText, Github } from "lucide-react"
+import { useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowDown, FileText, Github } from "lucide-react";
 
 export default function Hero() {
-  const textRef = useRef<HTMLHeadingElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLHeadingElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const textElement = textRef.current
-    if (!textElement) return
+    const textElement = textRef.current;
+    if (!textElement) return;
 
-    const text = "MERN Stack Developer"
-    let index = 0
-    let direction = 1
-    let timer: NodeJS.Timeout
+    const text = "MERN Stack Developer";
+    let index = 0;
+    let direction = 1;
+    let timer: NodeJS.Timeout;
 
     const typeText = () => {
-      if (!textElement) return
+      if (!textElement) return;
 
       if (direction === 1) {
         // Typing forward
-        index++
-        textElement.textContent = text.substring(0, index)
+        index++;
+        textElement.textContent = text.substring(0, index);
 
         if (index >= text.length) {
-          direction = 0
-          timer = setTimeout(typeText, 1500) // Pause at the end
-          return
+          direction = 0;
+          timer = setTimeout(typeText, 1500); // Pause at the end
+          return;
         }
       } else {
         // Erasing
-        index--
-        textElement.textContent = text.substring(0, index)
+        index--;
+        textElement.textContent = text.substring(0, index);
 
         if (index <= 0) {
-          direction = 1
-          timer = setTimeout(typeText, 500) // Pause before retyping
-          return
+          direction = 1;
+          timer = setTimeout(typeText, 500); // Pause before retyping
+          return;
         }
       }
 
-      const speed = direction === 1 ? 100 : 50 // Type slower, erase faster
-      timer = setTimeout(typeText, speed)
-    }
+      const speed = direction === 1 ? 100 : 50; // Type slower, erase faster
+      timer = setTimeout(typeText, speed);
+    };
 
-    timer = setTimeout(typeText, 500)
+    timer = setTimeout(typeText, 500);
 
-    return () => clearTimeout(timer)
-  }, [])
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    const container = containerRef.current;
+    if (!container) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const { left, top, width, height } = container.getBoundingClientRect()
-      const x = (e.clientX - left) / width - 0.5
-      const y = (e.clientY - top) / height - 0.5
+      const { left, top, width, height } = container.getBoundingClientRect();
+      const x = (e.clientX - left) / width - 0.5;
+      const y = (e.clientY - top) / height - 0.5;
 
-      container.style.transform = `perspective(1000px) rotateY(${x * 3}deg) rotateX(${y * -3}deg)`
-    }
+      container.style.transform = `perspective(1000px) rotateY(${
+        x * 3
+      }deg) rotateX(${y * -3}deg)`;
+    };
 
-    container.addEventListener("mousemove", handleMouseMove)
+    container.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      container.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [])
+      container.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
   const scrollToProjects = () => {
-    const element = document.getElementById("projects")
+    const element = document.getElementById("projects");
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      element.scrollIntoView({ behavior: "smooth" });
     }
-  }
+  };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+    <section
+      id="home"
+      className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden"
+    >
       <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117] via-[#161b22] to-[#0d1117] z-0"></div>
 
       <div className="container mx-auto px-4 z-10 relative">
@@ -98,11 +103,15 @@ export default function Hero() {
             </span>
           </h1>
 
-          <h2 ref={textRef} className="text-xl md:text-2xl mb-6 h-8 text-[#8b949e]"></h2>
+          <h2
+            ref={textRef}
+            className="text-xl md:text-2xl mb-6 h-8 text-[#8b949e]"
+          ></h2>
 
           <p className="max-w-2xl text-sm md:text-base mb-8 text-[#8b949e] animate-fadeInUp animation-delay-200">
-            I build responsive web applications with modern technologies. With 1 year of experience in MERN stack
-            development, I've worked on various projects and complex tasks including third-party integrations.
+            I build responsive web applications with modern technologies. With 1
+            year of experience in MERN stack development, I've worked on various
+            projects and complex tasks including third-party integrations.
           </p>
 
           <div
@@ -114,17 +123,39 @@ export default function Hero() {
               className="bg-[#238636] hover:bg-[#2ea043] text-white border-none relative overflow-hidden group"
             >
               <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-              View Projects <ArrowDown className="ml-2 h-4 w-4 animate-bounce" />
+              View Projects{" "}
+              <ArrowDown className="ml-2 h-4 w-4 animate-bounce" />
             </Button>
 
-            <Button variant="outline" className="border-[#30363d] hover:bg-[#30363d] relative overflow-hidden group">
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-              <Github className="mr-2 h-4 w-4" /> GitHub Profile
+            <Button
+              variant="outline"
+              className="border-[#30363d] hover:bg-[#30363d] relative overflow-hidden group"
+              asChild
+            >
+              <a
+                href="https://github.com/bharatrathod0210"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+                <Github className="mr-2 h-4 w-4" /> GitHub Profile
+              </a>
             </Button>
 
-            <Button variant="outline" className="border-[#30363d] hover:bg-[#30363d] relative overflow-hidden group">
-              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-              <FileText className="mr-2 h-4 w-4" /> Download CV
+            <Button
+              variant="outline"
+              className="border-[#30363d] hover:bg-[#30363d] relative overflow-hidden group"
+              asChild
+            >
+              <a
+                href="https://drive.google.com/file/d/1_CMeQ72y5W9mJ3S-yJypK3E4bb8d8EgU/view?usp=drive_link"
+                download="Bharat_Rathod_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+                <FileText className="mr-2 h-4 w-4" /> Download CV
+              </a>
             </Button>
           </div>
         </div>
@@ -141,9 +172,9 @@ export default function Hero() {
         style={{ animationDelay: "1s" }}
       ></div>
       <div
-        className="absolute top-1/3 right-1/4 w-16 h-16 rounded-full bg-[#f0883e] opacity-5 animate-pulse"
+        className="absolute top-/3 right-1/4 w-16 h-16 rounded-full bg-[#f0883e] opacity-5 animate-pulse"
         style={{ animationDelay: "2s" }}
       ></div>
     </section>
-  )
+  );
 }

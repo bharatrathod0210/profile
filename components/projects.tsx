@@ -332,9 +332,11 @@ export default function Projects() {
         </div>
 
         <div className="text-center mt-12 animate-on-scroll opacity-0">
-          <Button className="bg-[#238636] hover:bg-[#2ea043] relative overflow-hidden group">
-            <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
-            <Github className="mr-2 h-4 w-4" /> View More on GitHub
+          <Button className="bg-[#238636] hover:bg-[#2ea043] relative overflow-hidden group" asChild>
+            <a href="https://github.com/bharatrathod0210" target="_blank" rel="noopener noreferrer">
+              <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20 transform -translate-x-full group-hover:translate-x-full transition-all duration-1000"></span>
+              <Github className="mr-2 h-4 w-4" /> View More on GitHub
+            </a>
           </Button>
         </div>
       </div>

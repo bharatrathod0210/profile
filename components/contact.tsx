@@ -1,74 +1,89 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useEffect, useRef } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter } from "lucide-react"
+import { useState, useEffect, useRef } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  Github,
+  Linkedin,
+  Twitter,
+  Instagram,
+} from "lucide-react";
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
     setTimeout(() => {
-      console.log("Form submitted:", formData)
-      setIsSubmitting(false)
-      setIsSubmitted(true)
+      console.log("Form submitted:", formData);
+      setIsSubmitting(false);
+      setIsSubmitted(true);
 
       // Reset form after showing success message
       setTimeout(() => {
-        setIsSubmitted(false)
+        setIsSubmitted(false);
         setFormData({
           name: "",
           email: "",
           subject: "",
           message: "",
-        })
-      }, 3000)
-    }, 1500)
-  }
+        });
+      }, 3000);
+    }, 1500);
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("animate-fadeInUp")
+            entry.target.classList.add("animate-fadeInUp");
           }
-        })
+        });
       },
-      { threshold: 0.1 },
-    )
+      { threshold: 0.1 }
+    );
 
-    const elements = sectionRef.current?.querySelectorAll(".animate-on-scroll")
-    elements?.forEach((el) => observer.observe(el))
+    const elements = sectionRef.current?.querySelectorAll(".animate-on-scroll");
+    elements?.forEach((el) => observer.observe(el));
 
     return () => {
-      elements?.forEach((el) => observer.unobserve(el))
-    }
-  }, [])
+      elements?.forEach((el) => observer.unobserve(el));
+    };
+  }, []);
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-[#161b22] relative overflow-hidden">
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="py-20 bg-[#161b22] relative overflow-hidden"
+    >
       {/* Background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-5">
@@ -126,7 +141,7 @@ export default function Contact() {
                       bharat.rathod0210@gmail.com
                     </p>
                   </div>
-                </div>  
+                </div>
 
                 <div
                   className="flex items-start transform transition-transform duration-500 group-hover:translate-x-2"
@@ -180,15 +195,27 @@ export default function Contact() {
                     variant="outline"
                     size="icon"
                     className="rounded-full border-[#30363d] hover:bg-[#30363d] hover:text-[#58a6ff] relative overflow-hidden group"
+                    asChild
                   >
-                    <span className="absolute inset-0 w-full h-full bg-[#58a6ff]/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                    <Github className="h-5 w-5 relative z-10" />
+                    <a
+                      href="https://github.com/bharatrathod0210"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span className="absolute inset-0 w-full h-full bg-[#58a6ff]/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                      <Github className="h-5 w-5 relative z-10" />
+                    </a>
                   </Button>
                   <Button
                     variant="outline"
                     size="icon"
                     className="rounded-full border-[#30363d] hover:bg-[#30363d] hover:text-[#58a6ff] relative overflow-hidden group"
                   >
+                    <a
+                      href="https://www.linkedin.com/in/bharat-rathod-876b2a288/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    ></a>
                     <span className="absolute inset-0 w-full h-full bg-[#58a6ff]/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
                     <Linkedin className="h-5 w-5 relative z-10" />
                   </Button>
@@ -197,8 +224,13 @@ export default function Contact() {
                     size="icon"
                     className="rounded-full border-[#30363d] hover:bg-[#30363d] hover:text-[#58a6ff] relative overflow-hidden group"
                   >
+                    <a
+                      href="https://www.instagram.com/theindia_rathod/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    ></a>
                     <span className="absolute inset-0 w-full h-full bg-[#58a6ff]/10 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-                    <Twitter className="h-5 w-5 relative z-10" />
+                    <Instagram className="h-5 w-5 relative z-10" />
                   </Button>
                 </div>
               </div>
@@ -208,7 +240,10 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="animate-on-scroll opacity-0" style={{ animationDelay: "200ms" }}>
+          <div
+            className="animate-on-scroll opacity-0"
+            style={{ animationDelay: "200ms" }}
+          >
             <div className="bg-[#0d1117] border border-[#30363d] rounded-lg p-6 relative overflow-hidden group hover:border-[#58a6ff] transition-colors duration-300">
               <div className="absolute inset-0 bg-gradient-to-br from-[#58a6ff]/5 via-transparent to-[#238636]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
@@ -301,5 +336,5 @@ export default function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }
